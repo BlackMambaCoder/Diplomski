@@ -1,0 +1,10 @@
+TYPE_PI = 100
+TYPE_CLIENT = 101
+
+TEMP_SENSOR = 102
+
+SOURCE_ATTR = 'source'
+SENSOR_ATTR = 'sensor'
+VALUE_ATTR = 'value'
+TIME_ATTR = 'time'
+MESSAGE_ATTR = 'message'

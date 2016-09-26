@@ -6,34 +6,38 @@
 </head>
 <body>
 <h1>Websocket</h1>
-<label id="conn_text"></label><br />
+<label id="conn_text"></label><br>
 <input type="text" id="input_text"/>
-<input type="submit" id="button" value="Send" /><br />
-<div id="messages_txt" />
+<button class="submit-button" onclick="btnClk()">Send</button><br>
+<div id="messages_txt"></div>
 <script>
-  $(document).ready(function () {
-    //change example.com with your IP or your host
-    var ws = new WebSocket("localhost:8896/server");
-    ws.onopen = function(evt) {
-      var conn_status = document.getElementById('conn_text');
-      conn_status.innerHTML = "Connection status: Connected!"
-    };
-    ws.onmessage = function(evt) {
-      var newMessage = document.createElement('p');
-      newMessage.textContent = "Server: " + evt.data;
-      document.getElementById('messages_txt').appendChild(newMessage);
-    };
-    ws.onclose = function(evt) {
-      alert ("Connection closed");
-    };
-    $("#button").click(function(evt) {
-      evt.preventDefault();
-      var message = $("#input_text").val();
-      ws.send(message);
-      var newMessage = document.createElement('p');
-      newMessage.textContent = "Client: " + message;
-      document.getElementById('messages_txt').appendChild(newMessage);
-    });
-  });
+
+$(document).ready(function () {
+	var ws = new WebSocket('http://localhost:8850/server');
+
+	ws.onopen = function (evt) {
+		var conn_status = document.getElementById('conn_text');
+		conn_status.innerHTML = "Connection status: Connected!";
+	};
+
+	ws.onmessage = function (evt) {
+		var newMessage = document.createElement('p');
+		newMessage.textContent = "Server: " + evt.data;
+		document.getElementById('messages_txt').appendChild(newMessage);
+	};
+
+	ws.onclose = function(evt) {
+		alert ("Connection closed");
+	};
+
+	$('.submit-button').on('click', function () {
+		var newMessage = document.createElement('p');
+		var message = $('#input_text').val();
+		newMessage.textContent = "Client: " + message;
+		<!--ws.send(message);-->
+
+		document.getElementById('messages_txt').appendChild(newMessage);
+	});
+};
 </script>
 </body></html>

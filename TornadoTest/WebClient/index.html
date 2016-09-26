@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket</title>
+    <script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+</head>
+<body>
+<h1>Websocket</h1>
+<label id="conn_text"></label>
+<br>
+<input type="text" id="input-text">
+<button class="submit-button">Send</button>
+<div id="messages-text"></div>
+<script>
+    var main = function () {
+        console.log('main called');
+
+        <!--var ws = new WebSocket('ws://192.168.0.111:8850/server');-->
+        var ws = new WebSocket('ws://localhost:8850/server');
+
+        ws.onopen = function (evt) {
+            console.log('Connection open');
+            var conn_status = document.getElementById('conn_text');
+            conn_status.innerHTML = "Connection status: Connected!";
+        };
+
+        ws.onmessage = function (evt) {
+            console.log('Got new message');
+            var newMessage = document.createElement('p');
+            newMessage.textContent = "Server: " + evt.data;
+            $('#messages-text').append(newMessage);
+        };
+
+        ws.onclose = function(evt) {
+            console.log('Connection closed');
+            alert ("Connection closed");
+        };
+
+        $('.submit-button').click(function (event) {
+            console.log('button clicked');
+
+            var newMessage = document.createElement('p');
+            var message = $('#input-text').val();
+            newMessage.textContent = "Client: " + message;
+            ws.send(message);
+
+            $('#messages-text').append(newMessage);
+        });
+    };
+
+    $(document).ready(main);
+</script>
+</body>
+</html>

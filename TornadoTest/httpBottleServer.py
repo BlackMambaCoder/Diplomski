@@ -21,6 +21,8 @@ def write_temp(temperature):
 
     file_write_temp.close()
 
+    print "Temperature: " + str(temperature)
+
     return "temp written"
 
-run(host='192.168.0.108', port=8700)
+run(host='192.168.0.108', port=8800)

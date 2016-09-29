@@ -124,7 +124,7 @@ class TestWebSocketClient(WebSocketClient):
 
 def main():
     client = TestWebSocketClient()
-    client.connect('ws://192.168.0.108:9996')
+    client.connect('ws://192.168.0.108:9988')
 
     try:
         ioloop.IOLoop.instance().start()

@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".Services.NotificationService"
+            android:enabled="true">
+            <!--<intent-filter>-->
+                <!--<action android:name=".Services.NotifiactionService"></action>-->
+            <!--</intent-filter>-->
+        </service>
     </application>
 
 </manifest>

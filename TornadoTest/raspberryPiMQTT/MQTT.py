@@ -55,8 +55,19 @@ class DS18B20TempSensor:
         return 'Error'
 
 if __name__ == "__main__":
-    config_file = ConfigConstants.FILE_NAME
-    config = Configuration(config_file)
+
+    config_file_path = ConfigConstants.FILE_NAME
+    config = Configuration(config_file_path)
+
+    # client = mqtt.Client(protocol=MQTTv311)
+    # ip_address = config.read_mqtt_publisher_ip_address()
+    # port = config.read_server_port()
+    #
+    # client.connect(host=ip_address, port=port, 60)
+
+
+    # config_file = ConfigConstants.FILE_NAME
+    # config = Configuration(config_file)
 
     tempSensor = DS18B20TempSensor()
     while True:
@@ -92,7 +103,13 @@ if __name__ == "__main__":
         # do not interrupt the whole process
         if temp == 'Error':
             print "Sending Error"
-            publish.single("home/room/temperature", temp, hostname=config.read_mqtt_subscriber_ip_address(), port=config.read_server_port(), protocol=MQTTv311)
+            publish.single(
+                "#",
+                temp,
+                hostname=config.read_mqtt_subscriber_ip_address(),
+                port=config.read_server_port(),
+                protocol=MQTTv311
+            )
             continue
 
         temp = float(temp)
@@ -101,7 +118,7 @@ if __name__ == "__main__":
         if temp > tempSensor.config.read_temp_level():
             print "Sending temperature: " + str(temp)
             publish.single(
-                "home/room/temperature",
+                "#",
                 temp,
                 hostname=config.read_mqtt_subscriber_ip_address(),
                 port=config.read_server_port(),

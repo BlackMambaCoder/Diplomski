@@ -44,6 +44,8 @@ class DS18B20TempSensor:
 
             temperature = float(temp_string) / 1000.0
 
+            print "DS18B20# Temperature: " + str(temperature)
+
             if self.config.read_temp_measure() == "C":
                 return str(temperature)
 
@@ -58,10 +60,14 @@ if __name__ == "__main__":
 
     tempSensor = DS18B20TempSensor()
     while True:
+        print "****************************************"
         # Wait some time as long as it's described
         # in the config file.
         sleepPeriod = config.read_update_period_interval()
-        sleepMeasure = config.read_temp_measure()
+        sleepMeasure = config.read_update_period_measure()
+
+        print "MQTT# SleepPeriod: " + str(sleepPeriod)
+        print "MQTT# SleepMeasure: " + sleepMeasure
 
         if sleepMeasure == ConfigConstants.MEASURE_MILLI_SECONDS:
             sleepPeriod = float(sleepPeriod) / 1000.0
@@ -76,22 +82,17 @@ if __name__ == "__main__":
         # wait at least 10 seconds, but do not interrupt the
         # system.
         else:
-            print "MQTT# Sleep period ERROR. Sleep for 10s."
-            time.sleep(10)
+            print "MQTT# Sleep period ERROR. Sleep for 2s."
+            time.sleep(2)
 
         temp = tempSensor.read_temp()
+        print "MQTT# Temperature: " + str(temp)
 
         # If an error occurs, send error message, but
         # do not interrupt the whole process
         if temp == 'Error':
             print "Sending Error"
-            publish.single(
-                "home/room/temperature",
-                temp,
-                hostname=config.read_server_ip_address(),
-                port=config.read_server_port(),
-                protocol=MQTTv311
-            )
+            publish.single("home/room/temperature", temp, hostname=config.read_mqtt_subscriber_ip_address(), port=config.read_server_port(), protocol=MQTTv311)
             continue
 
         temp = float(temp)
@@ -102,7 +103,7 @@ if __name__ == "__main__":
             publish.single(
                 "home/room/temperature",
                 temp,
-                hostname=config.read_server_ip_address(),
+                hostname=config.read_mqtt_subscriber_ip_address(),
                 port=config.read_server_port(),
                 protocol=MQTTv311
             )

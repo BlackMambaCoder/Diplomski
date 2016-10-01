@@ -1,0 +1,17 @@
+
+FILE_NAME = "ds18b20.cfg"
+
+UPDATE_PERIOD = "update_period"
+TEMPERATURE = "temperature"
+SERVER = "server"
+MQTT_HOME_ROOM_TEMPERATURE_PUBLISHER = "mqtt_home_room_temperature_publisher"
+MQTT_HOME_ROOM_TEMPERATURE_SUBSCRIBER = "mqtt_home_room_temperature_subscriber"
+
+LEVEL = "level"
+MEASURE = "measure"
+INTERVAL = "interval"
+IP_ADDRESS = "ip_address"
+PORT = "port"
+
+MEASURE_MILLI_SECONDS = "ms"
+MEASURE_SECONDS = "s"

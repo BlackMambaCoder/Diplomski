@@ -72,29 +72,32 @@ if __name__ == "__main__":
     tempSensor = DS18B20TempSensor()
     while True:
         print "****************************************"
-        # Wait some time as long as it's described
-        # in the config file.
-        sleepPeriod = config.read_update_period_interval()
-        sleepMeasure = config.read_update_period_measure()
+        # # Wait some time as long as it's described
+        # # in the config file.
+        # sleepPeriod = config.read_update_period_interval()
+        # sleepMeasure = config.read_update_period_measure()
+        #
+        # print "MQTT# SleepPeriod: " + str(sleepPeriod)
+        # print "MQTT# SleepMeasure: " + sleepMeasure
+        #
+        # if sleepMeasure == ConfigConstants.MEASURE_MILLI_SECONDS:
+        #     sleepPeriod = float(sleepPeriod) / 1000.0
+        #     print "MQTT# Sleep period: " + str(sleepPeriod) + sleepMeasure + "."
+        #     time.sleep(sleepPeriod)
+        #
+        # elif sleepMeasure == ConfigConstants.MEASURE_SECONDS:
+        #     print "MQTT# Sleep period: " + str(sleepPeriod) + sleepMeasure + "."
+        #     time.sleep(sleepPeriod)
+        #
+        # # If there is an error about the time period measure,
+        # # wait at least 10 seconds, but do not interrupt the
+        # # system.
+        # else:
+        #     print "MQTT# Sleep period ERROR. Sleep for 2s."
+        #     time.sleep(2)
 
-        print "MQTT# SleepPeriod: " + str(sleepPeriod)
-        print "MQTT# SleepMeasure: " + sleepMeasure
-
-        if sleepMeasure == ConfigConstants.MEASURE_MILLI_SECONDS:
-            sleepPeriod = float(sleepPeriod) / 1000.0
-            print "MQTT# Sleep period: " + str(sleepPeriod) + sleepMeasure + "."
-            time.sleep(sleepPeriod)
-
-        elif sleepMeasure == ConfigConstants.MEASURE_SECONDS:
-            print "MQTT# Sleep period: " + str(sleepPeriod) + sleepMeasure + "."
-            time.sleep(sleepPeriod)
-
-        # If there is an error about the time period measure,
-        # wait at least 10 seconds, but do not interrupt the
-        # system.
-        else:
-            print "MQTT# Sleep period ERROR. Sleep for 2s."
-            time.sleep(2)
+        print "MQTT-Temperature# Wait 0.5s"
+        time.sleep(0.5)
 
         temp = tempSensor.read_temp()
         print "MQTT# Temperature: " + str(temp)

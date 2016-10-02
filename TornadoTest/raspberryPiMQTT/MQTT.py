@@ -104,7 +104,7 @@ if __name__ == "__main__":
         if temp == 'Error':
             print "Sending Error"
             publish.single(
-                "#",
+                "home/room/temperature",
                 temp,
                 hostname=config.read_mqtt_subscriber_ip_address(),
                 port=config.read_server_port(),
@@ -118,7 +118,7 @@ if __name__ == "__main__":
         if temp > tempSensor.config.read_temp_level():
             print "Sending temperature: " + str(temp)
             publish.single(
-                "#",
+                "home/room/temperature",
                 temp,
                 hostname=config.read_mqtt_subscriber_ip_address(),
                 port=config.read_server_port(),

@@ -9,7 +9,7 @@ from paho.mqtt.client import MQTTv311
 
 def on_connect(clientArg, userdata, rc):
     print "Connected with result code " + str(rc)
-    clientArg.subscribe("#")
+    clientArg.subscribe("home/room/#")
 
 
 def on_message(clientArg, userdata, msg):
@@ -41,8 +41,6 @@ ip_address = config.read_mqtt_publisher_ip_address()
 port = config.read_server_port()
 
 client.connect(ip_address, port, 60)
-# client.connect_srv(ip_address)
-# client.subscribe("#")
 
 print "Connected on: " + str(ip_address) + ":" + str(port)
 

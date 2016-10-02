@@ -28,3 +28,10 @@ class Configuration:
 
     def read_server_port(self):
         return int(self.cfg.get(ConfigConstants.SERVER, ConfigConstants.PORT))
+
+    def read_bottle_server_port(self):
+        return int(self.cfg.get(ConfigConstants.SERVER, ConfigConstants.BOTTLE_SERVER_PORT))
+
+    def read_bottle_server_ip_address(self):
+        return str(self.cfg[ConfigConstants.SERVER][ConfigConstants.IP_ADDRESS])
+        # return str(self.cfg.get(ConfigConstants.SERVER, ConfigConstants.IP_ADDRESS))

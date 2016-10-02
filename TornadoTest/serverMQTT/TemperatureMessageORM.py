@@ -8,8 +8,7 @@ Base = declarative_base()
 class TemperatureMessage(Base):
     __tablename__ = 'temperature_message'
 
-    topic = sa.Column('topic', sa.String, primary_key=True)
-    temperature = sa.Column('temperature', sa.Float)
+    temperature = sa.Column('temperature', sa.Float, primary_key=True)
     unread = sa.Column('unread', sa.Boolean)
 
     def __init__(self, temperature):

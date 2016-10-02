@@ -12,6 +12,10 @@ MEASURE = "measure"
 INTERVAL = "interval"
 IP_ADDRESS = "ip_address"
 PORT = "port"
+BOTTLE_SERVER_PORT = "bottle_server_port"
 
 MEASURE_MILLI_SECONDS = "ms"
 MEASURE_SECONDS = "s"
+
+TOPIC_HOME_ROOM_TEMPERATURE = "home/room/temperature"
+TOPIC_HOME_ROOM_AIR_CONDITIONER = "home/room/air_conditioner"

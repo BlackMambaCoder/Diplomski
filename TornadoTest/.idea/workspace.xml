@@ -20,7 +20,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MQTTReaderClass.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MQTTReaderClass.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/serverMQTT/MQTTReaderClass.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="413">
@@ -28,6 +28,16 @@
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ds18b20.cfg" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Configs/ds18b20.cfg">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -646,13 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Configs/ds18b20.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/raspberryPiMQTT/MQTT.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
@@ -719,6 +722,14 @@
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Configs/ds18b20.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>

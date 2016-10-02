@@ -6,6 +6,7 @@
         android:name="android.permission.INTERNET"></uses-permission>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -22,6 +23,12 @@
             </intent-filter>
         </activity>
         <service android:name=".Services.NotificationService"
+            android:enabled="true">
+            <!--<intent-filter>-->
+                <!--<action android:name=".Services.NotifiactionService"></action>-->
+            <!--</intent-filter>-->
+        </service>
+        <service android:name=".Services.MqttService"
             android:enabled="true">
             <!--<intent-filter>-->
                 <!--<action android:name=".Services.NotifiactionService"></action>-->

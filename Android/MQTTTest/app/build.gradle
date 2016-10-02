@@ -41,6 +41,6 @@ dependencies {
     compile files('libs/jackson-core-asl-1.9.7.jar')
     compile files('libs/jackson-mapper-asl-1.9.7.jar')
 
-    compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2'
-    compile 'org.eclipse.paho:org.eclipse.paho.android.service:1.0.2'
+    compile('org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2')
+    compile('org.eclipse.paho:org.eclipse.paho.android.service:1.0.2')// { exclude module: 'subbort-v4' }
 }

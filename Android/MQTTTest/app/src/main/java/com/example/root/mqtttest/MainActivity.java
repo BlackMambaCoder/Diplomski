@@ -10,6 +10,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.root.mqtttest.Runnables.ConnectSocket;
+import com.example.root.mqtttest.Services.MqttService;
 import com.example.root.mqtttest.Services.NotificationService;
 
 import java.util.concurrent.ExecutorService;
@@ -93,13 +94,15 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             SERVER_PORT =
                     Integer.parseInt(this.etServerPort.getText().toString());
 
-            startService(new Intent(this, NotificationService.class));
+//            startService(new Intent(this, NotificationService.class));
+            startService(new Intent(this, MqttService.class));
         }
         else
         {
             Log.w("LEO--ConnectBtn", "Disconnect");
 
-            stopService(new Intent(this, NotificationService.class));
+//            stopService(new Intent(this, NotificationService.class));
+            stopService(new Intent(this, MqttService.class));
         }
     }
 

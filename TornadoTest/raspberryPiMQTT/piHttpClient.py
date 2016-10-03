@@ -18,6 +18,6 @@ while True:
 
     print "piHttp# Sending temperature: " + str(temperature)
 
-    url = "http://192.168.0.108:8851/home_room_temperature/" + str(temperature)
+    url = "http://192.168.0.108:8800/home_room_temperature/" + str(temperature)
     resp = requests.get(url)
     time.sleep(0.5)

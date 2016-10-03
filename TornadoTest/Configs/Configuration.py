@@ -5,6 +5,10 @@ import ConfigConstants
 class Configuration:
 
     def __init__(self, config_file_path):
+        self.config_path = config_file_path
+
+        # self.config_write = open(config_file_path, "a")
+
         self.cfg = configparser.ConfigParser()
         self.cfg.read(config_file_path)
 
@@ -35,3 +39,27 @@ class Configuration:
     def read_bottle_server_ip_address(self):
         return str(self.cfg[ConfigConstants.SERVER][ConfigConstants.IP_ADDRESS])
         # return str(self.cfg.get(ConfigConstants.SERVER, ConfigConstants.IP_ADDRESS))
+
+    # def read_topic_unread_flag(self):
+    #     return str(
+    #         self.cfg
+    #         [ConfigConstants.HOME_ROOM_TEMPERATURE]
+    #         [ConfigConstants.UNREAD]
+    #     )
+    #
+    # def read_topic_value(self):
+    #     return str(
+    #         self.cfg
+    #         [ConfigConstants.HOME_ROOM_TEMPERATURE]
+    #         [ConfigConstants.VALUE]
+    #     )
+
+    def write_period_interval(self, arg):
+        self.cfg.set(ConfigConstants.UPDATE_PERIOD, ConfigConstants.INTERVAL, arg)
+        with open(self.config_path, "w") as configfile:
+            self.cfg.write(configfile)
+
+    def write_temp_level(self, arg):
+        self.cfg.set(ConfigConstants.TEMPERATURE, ConfigConstants.LEVEL, arg)
+        with open(self.config_path, "w") as configfile:
+            self.cfg.write(configfile)

@@ -6,7 +6,7 @@ import time
 import MQTTReaderClass
 
 class WSHandlerServer(tornado.websocket.WebSocketHandler):
-    web_socket_port = 9002
+    web_socket_port = 9000
     mqttc = None
 
     def check_origin(self, origin):

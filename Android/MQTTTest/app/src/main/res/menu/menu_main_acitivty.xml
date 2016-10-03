@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/raspberry_config"
+        android:title="RPI Configuration"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/arduino_config"
+        android:title="Arduino Configuration"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/raspberry_data"
+        android:title="RPI Data"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/arduino_data"
+        android:title="Arduino Data"
+        app:showAsAction="ifRoom"/>
+
+</menu>

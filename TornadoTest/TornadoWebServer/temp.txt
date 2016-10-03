@@ -1,1 +1,1 @@
-23.125
+{"topic": "home/room/temperature", "unread": 0, "value": 23.375, "time": 1475517037}

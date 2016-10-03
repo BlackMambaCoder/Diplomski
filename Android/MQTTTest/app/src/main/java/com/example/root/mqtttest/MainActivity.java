@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.example.root.mqtttest.Activities.RaspConfigActivity;
 import com.example.root.mqtttest.Runnables.ConnectSocket;
-import com.example.root.mqtttest.Services.MqttService;
+//import com.example.root.mqtttest.Services.MqttService;
 import com.example.root.mqtttest.Services.NotificationService;
 
 import java.util.concurrent.ExecutorService;
@@ -29,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public static EditText etServerMessage;
 
     public static String temperatureString = "";
+
+    private boolean notificationServiceRuns = false;
 
     ToggleButton tglBtnConnection;
 
@@ -94,16 +100,67 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             SERVER_PORT =
                     Integer.parseInt(this.etServerPort.getText().toString());
 
-//            startService(new Intent(this, NotificationService.class));
-            startService(new Intent(this, MqttService.class));
+            startService(new Intent(this, NotificationService.class));
+            this.notificationServiceRuns = true;
+//            startService(new Intent(this, MqttService.class));
         }
         else
         {
             Log.w("LEO--ConnectBtn", "Disconnect");
 
-//            stopService(new Intent(this, NotificationService.class));
-            stopService(new Intent(this, MqttService.class));
+            stopService(new Intent(this, NotificationService.class));
+            this.notificationServiceRuns = false;
+//            stopService(new Intent(this, MqttService.class));
         }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if (this.notificationServiceRuns)
+        {
+            stopService(new Intent(this, NotificationService.class));
+        }
+
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main_acitivty, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+
+        switch (item.getItemId()) {
+            case R.id.raspberry_config:
+                // rasp config
+                intent = new Intent(this, RaspConfigActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.arduino_config:
+                // arduino config
+                break;
+
+            case R.id.raspberry_data:
+                // rasp data
+                break;
+
+            case R.id.arduino_data:
+                // arduino data
+                break;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean checkFields ()

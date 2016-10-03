@@ -1,5 +1,6 @@
 
 FILE_NAME = "ds18b20.cfg"
+TEMP_STORE_FILE_NAME = "temp.cfg"
 
 UPDATE_PERIOD = "update_period"
 TEMPERATURE = "temperature"
@@ -19,3 +20,8 @@ MEASURE_SECONDS = "s"
 
 TOPIC_HOME_ROOM_TEMPERATURE = "home/room/temperature"
 TOPIC_HOME_ROOM_AIR_CONDITIONER = "home/room/air_conditioner"
+
+HOME_ROOM_TEMPERATURE = "home_room_temperature"
+
+UNREAD = "unread"
+VALUE = "value"

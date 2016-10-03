@@ -16,20 +16,8 @@ public class ConnectSocket implements Runnable {
     @Override
     public void run()
     {
-//        int counter = 0;
-//
-//        while(work) {
-//            Log.w("LEO--Thread", "Counter: " + String.valueOf(counter++));
-//            try {
-//                Thread.sleep(1500);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//                Log.e("LEO--Thread", "Error: " + e.getMessage());
-//                break;
-//            }
-//        }
         final String serverAddr = "ws://" + MainActivity.SERVER_IP + ":" + MainActivity.SERVER_PORT;
-        Log.w("TCP Client", "C: Connecting...");
+        Log.w("WEBSocket", "C: Connecting...");
 
         final WebSocketConnection webSocketConnection = new WebSocketConnection();
 
@@ -49,11 +37,23 @@ public class ConnectSocket implements Runnable {
                     content += new Date().getTime() + ": " + payload;
                     MainActivity.etServerMessage.setText(content);
 
+                    webSocketConnection.sendTextMessage("Hello, send again");
+                }
+
+                @Override
+                public void onClose(int code, String reason) {
+                    Log.d("WEBSocket", "Connection lost. Reason: "
+                            + reason
+                            + ". Code: "
+                            + String.valueOf(code)
+                    );
                 }
             });
+
+            Log.d("WEBSocket", "Web socket succeeded");
         } catch (WebSocketException e) {
             e.printStackTrace();
-            Log.e("LEO--Thread", "Error: " + e.getMessage());
+            Log.e("WebSocket", "Error: " + e.getMessage());
         }
     }
 }

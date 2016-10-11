@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MQTTTest</string>
+    <string name="title_activity_socket_connection">SocketConnectionActivity</string>
 </resources>

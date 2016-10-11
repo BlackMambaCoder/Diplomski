@@ -25,7 +25,7 @@ public class NotificationService extends Service {
 
     private ExecutorService threadPoolExecutor = Executors.newSingleThreadExecutor();
     private Future connectFuture;
-    Runnable connectSocket = new ConnectSocket();
+    Runnable connectSocket = new ConnectSocket(this);
 
     @Override
     public void onCreate() {
@@ -36,7 +36,6 @@ public class NotificationService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId)
     {
         Log.w("LEO--Service", "Service::onStartCommand");
-        ConnectSocket.work = true;
         this.connectFuture = this.threadPoolExecutor.submit(connectSocket);
 
         return super.onStartCommand(intent, flags, startId);
@@ -46,7 +45,7 @@ public class NotificationService extends Service {
     public void onDestroy()
     {
         Log.w("LEO--Service", "Service::onDestroy");
-        ConnectSocket.work = false;
+        ConnectSocket.webSocketConnection.disconnect();
         this.connectFuture.cancel(true);
 //        new Handler().removeCallbacks(connectSocket);
         super.onDestroy();

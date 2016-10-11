@@ -5,7 +5,6 @@ TEMP_STORE_FILE_NAME = "temp.cfg"
 UPDATE_PERIOD = "update_period"
 TEMPERATURE = "temperature"
 SERVER = "server"
-BROKER_SERVER = "broker_server"
 MQTT_HOME_ROOM_TEMPERATURE_PUBLISHER = "mqtt_home_room_temperature_publisher"
 MQTT_HOME_ROOM_TEMPERATURE_SUBSCRIBER = "mqtt_home_room_temperature_subscriber"
 

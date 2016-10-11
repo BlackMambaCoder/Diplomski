@@ -1,5 +1,6 @@
 package com.example.root.mqtttest.Activities;
 
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.example.root.mqtttest.StaticAttributes.ServerStaticAttributes;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static android.R.attr.id;
@@ -70,7 +73,19 @@ public class RaspConfigActivity extends AppCompatActivity implements View.OnClic
                 }
 
                 responseData = asyncTask.getResponseData();
-                Toast.makeText(this, "GetConfigResponse: " + responseData, Toast.LENGTH_SHORT).show();
+                Log.d("RPICfgActivity", "GetConfigResponse: " + responseData);
+
+                List<Double> responseValues = this.getConfigDataFromResponse(responseData);
+
+                if (responseValues != null) {
+                    this.setEditTextData(
+                            responseValues.get(0).toString(),
+                            responseValues.get(1).toString()
+                    );
+                }
+                else {
+                    this.setEditTextData("error", "error");
+                }
 
                 break;
 
@@ -122,5 +137,27 @@ public class RaspConfigActivity extends AppCompatActivity implements View.OnClic
                 (this.period = this.etRaspPeriodValue.getText().toString()).equals("") ||
                 (this.tempTreshold = this.etRaspTempTreshold.getText().toString()).equals("")
         );
+    }
+
+    @Nullable
+    private List<Double> getConfigDataFromResponse(String responseDataArg) {
+        try {
+            JSONObject jsonObject = new JSONObject(responseDataArg);
+            List<Double> responseValues = new ArrayList<>();
+
+            responseValues.add(jsonObject.getDouble("threshold"));
+            responseValues.add(jsonObject.getDouble("period"));
+
+            return responseValues;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e("RPICfgActivity", e.getMessage());
+            return null;
+        }
+    }
+
+    private void setEditTextData(String...valuesArg) {
+        this.etRaspTempTreshold.setText(valuesArg[0]);
+        this.etRaspPeriodValue.setText(valuesArg[1]);
     }
 }

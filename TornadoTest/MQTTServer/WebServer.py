@@ -9,7 +9,7 @@ import requests
 from Configuration import Configuration
 from MongoAPI import MongoAPI
 
-from TemperatureMessageORM import TemperatureMessage
+# from TemperatureMessageORM import TemperatureMessage
 
 
 class HomeRoomTemperature(tornado.web.RequestHandler):
@@ -55,24 +55,24 @@ class HomeRoomTemperature(tornado.web.RequestHandler):
         db_api = MongoAPI()
         return db_api.store_temp(temperature)
 
-    def write_temp_to_db(self, temperature):
-        for temp in TemperatureMessage.filter(topic="home/room/temperature"):
-            print self.DEBUG_TAG + "Entry exists in DB"
-            print self.DEBUG_TAG + str(temp.temperature)
-
-            temp.temperature = temperature
-            temp.unread = False
-            temp.save()
-
-            break
-        else:
-            print self.DEBUG_TAG + "Entry doesn't exist in DB"
-
-            temp = TemperatureMessage(
-                topic="home/room/temperature",
-                temperature=temperature
-            )
-        temp.save()
+    # def write_temp_to_db(self, temperature):
+    #     for temp in TemperatureMessage.filter(topic="home/room/temperature"):
+    #         print self.DEBUG_TAG + "Entry exists in DB"
+    #         print self.DEBUG_TAG + str(temp.temperature)
+    #
+    #         temp.temperature = temperature
+    #         temp.unread = False
+    #         temp.save()
+    #
+    #         break
+    #     else:
+    #         print self.DEBUG_TAG + "Entry doesn't exist in DB"
+    #
+    #         temp = TemperatureMessage(
+    #             topic="home/room/temperature",
+    #             temperature=temperature
+    #         )
+    #     temp.save()
 
 
 class RaspBerryGetConfig(tornado.web.RequestHandler):
@@ -84,7 +84,7 @@ class RaspBerryGetConfig(tornado.web.RequestHandler):
     def post(self, *args, **kwargs):
         print self.DEBUG_TAG + "RaspberryGetConfig"
 
-        response = requests.get("http://192.168.0.105:7720/update_config/")
+        response = requests.get("http://192.168.1.2:7720/update_config/")
 
         status_code = response.status_code
 
@@ -122,7 +122,7 @@ class RaspBerrySetConfig(tornado.web.RequestHandler):
         print self.DEBUG_TAG + "Period: " + str(period)
 
         response = requests.post(
-            "http://192.168.0.105:7720/update_config/",
+            "http://192.168.1.2:7720/update_config/",
             data={"period": period, "threshold": threshold}
         )
 
@@ -146,7 +146,7 @@ class RaspBerryGetCurrentData(tornado.web.RequestHandler):
     def post(self, *args, **kwargs):
         print self.DEBUG_TAG + "Post request"
 
-        response = requests.get("http://192.168.0.105:7720/get_data/")
+        response = requests.get("http://192.168.1.2:7720/get_data/")
 
         status_code = response.status_code
 

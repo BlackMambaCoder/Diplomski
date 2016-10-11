@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/raspberry_config"
         android:title="RPI Configuration"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
     <item android:id="@+id/arduino_config"
         android:title="Arduino Configuration"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
     <item android:id="@+id/raspberry_data"
         android:title="RPI Data"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
     <item android:id="@+id/arduino_data"
         android:title="Arduino Data"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 
 </menu>

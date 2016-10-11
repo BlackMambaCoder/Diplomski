@@ -40,12 +40,6 @@ class Configuration:
         return str(self.cfg[ConfigConstants.SERVER][ConfigConstants.IP_ADDRESS])
         # return str(self.cfg.get(ConfigConstants.SERVER, ConfigConstants.IP_ADDRESS))
 
-    def read_broker_server_ip_address(self):
-        return str(self.cfg.get(ConfigConstants.BROKER_SERVER, ConfigConstants.IP_ADDRESS))
-
-    def read_broker_port(self):
-        return int(self.cfg.get(ConfigConstants.BROKER_SERVER, ConfigConstants.PORT))
-
     # def read_topic_unread_flag(self):
     #     return str(
     #         self.cfg

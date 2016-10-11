@@ -59,9 +59,6 @@ if __name__ == "__main__":
             print "MQTT# Sleep period ERROR. Sleep for 2s."
             sleepPeriod = 2.0
 
-        # print "MQTT-Temperature# Wait 0.5s"
-        # time.sleep(0.5)
-
         time.sleep(sleepPeriod)
 
         temp = tempSensor.read_temp()
@@ -75,13 +72,6 @@ if __name__ == "__main__":
                 "home/room/temperature",
                 temp
             )
-            # publish.single(
-            #     "home/room/temperature",
-            #     temp,
-            #     hostname=config.read_mqtt_subscriber_ip_address(),
-            #     port=config.read_server_port(),
-            #     protocol=MQTTv311
-            # )
             continue
 
         temp = float(temp) / 1000.0
@@ -96,10 +86,3 @@ if __name__ == "__main__":
                 "home/room/temperature",
                 temp
             )
-            # publish.single(
-            #     "home/room/temperature",
-            #     temp,
-            #     hostname=config.read_mqtt_subscriber_ip_address(),
-            #     port=config.read_server_port(),
-            #     protocol=MQTTv311
-            # )

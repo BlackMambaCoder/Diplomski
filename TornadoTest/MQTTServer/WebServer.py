@@ -84,7 +84,7 @@ class RaspBerryGetConfig(tornado.web.RequestHandler):
     def post(self, *args, **kwargs):
         print self.DEBUG_TAG + "RaspberryGetConfig"
 
-        response = requests.get("http://192.168.1.2:7720/update_config/")
+        response = requests.get("http://192.168.0.103:7720/update_config/")
 
         status_code = response.status_code
 
@@ -122,7 +122,7 @@ class RaspBerrySetConfig(tornado.web.RequestHandler):
         print self.DEBUG_TAG + "Period: " + str(period)
 
         response = requests.post(
-            "http://192.168.1.2:7720/update_config/",
+            "http://192.168.0.103:7720/update_config/",
             data={"period": period, "threshold": threshold}
         )
 
@@ -146,7 +146,7 @@ class RaspBerryGetCurrentData(tornado.web.RequestHandler):
     def post(self, *args, **kwargs):
         print self.DEBUG_TAG + "Post request"
 
-        response = requests.get("http://192.168.1.2:7720/get_data/")
+        response = requests.get("http://192.168.0.103:7720/get_data/")
 
         status_code = response.status_code
 

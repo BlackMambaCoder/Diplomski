@@ -39,7 +39,7 @@ class MQTTReaderClass:
 
     def run(self):
         self._mqttc.connect(
-            "192.168.1.5",
+            "192.168.0.108",
             1883,
             60
         )
@@ -53,14 +53,3 @@ class MQTTReaderClass:
         db_api = MongoAPI()
         return db_api.store_temp(temperature)
 
-        # rc = 0
-        # while rc == 0:
-        #     rc = self._mqttc.loop()
-        #
-        # return rc
-
-
-# mqttc = MQTTReaderClass()
-# rc = mqttc.run()
-#
-# print "MQTTReader# rc: " + str(rc)
